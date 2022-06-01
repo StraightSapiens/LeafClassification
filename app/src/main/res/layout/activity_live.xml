@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".java.LiveActivity">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/backbutton"
+        android:text="Back"
+        android:textAllCaps="false"
+        android:layout_alignParentBottom="true"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        />
+    <androidx.camera.view.PreviewView
+        android:layout_width="370sp"
+        android:layout_height="370sp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/previewView"
+        android:layout_marginTop="10sp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Leaf type:"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:id="@+id/classified"
+        android:layout_below="@+id/previewView"
+        android:layout_marginTop="10sp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text=""
+        android:textColor="#C30000"
+        android:textStyle="bold"
+        android:textSize="27sp"
+        android:id="@+id/result"
+        android:layout_below="@+id/classified"
+        />
+</RelativeLayout>
