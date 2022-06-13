@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button camera, gallery, live;
     ImageView imageView;
-    TextView result;
+    TextView result, confidency;
     int imageSize = 224;
 
     @Override
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         live = findViewById(R.id.livebutton);
 
         result = findViewById(R.id.result);
+        confidency = findViewById(R.id.confidency);
         imageView = findViewById(R.id.imageView);
 
         camera.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +76,11 @@ public class MainActivity extends AppCompatActivity {
         live.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openLive();
+                if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                    openLive();
+                } else {
+                    requestPermissions(new String[]{Manifest.permission.CAMERA}, 100);
+                }
             }
         });
     }
@@ -117,9 +122,11 @@ public class MainActivity extends AppCompatActivity {
                     maxPos = i;
                 }
             }
+            String percentage = String.format("%."+2+"f",maxConfidence*100)+"%";
             String[] classes = {"Apple (Scab)", "Apple (Black rot)", "Apple (Cedar apple rust)", "Apple (Healthy)", "Blueberry (Healthy)", "Cherry (Healthy)", "Cherry (Powdery mildew)", "Corn (Cercospora leaf spot: Gray leaf spot)", "Corn (Common rust)", "Corn (Healthy)", "Corn (Northern Leaf blight)", "Grape (Black rot)", "Grape (Esca: BlackMeasles)", "Grape (Healthy)", "Grape (Leaf blight: Isariopsis Leaf spot)", "Orange (Haunglongbing: Citrus greening)", "Peach (Bacterial spot)", "Peach (Healthy)", "Pepper (Bacterial spot)", "Pepper (Healthy)", "Potato (Early blight)", "Potato (Healthy)", "Potato (Late blight)", "Raspberry (Healthy)", "Soy bean (Healthy)", "Squash (Powdery mildew)", "Strawberry (Healthy)", "Strawberry (Leaf scorch)", "Tomato (Bacterial spot)", "Tomato (Early blight)", "Tomato (Healthy)", "Tomato (Late blight)", "Tomato (Leaf Mold)", "Tomato (Septoria leaf spot)", "Tomato (Spider mites: Two-spotted spider mite)", "Tomato (Target Spot)", "Tomato (Mosaic virus)", "Tomato (Yellow Leaf Curl Virus)"};
             if (maxConfidence > 0.92) {
                 result.setText(classes[maxPos]);
+                confidency.setText(percentage);
             }
             else{
                 result.setText("Not classifiable");
