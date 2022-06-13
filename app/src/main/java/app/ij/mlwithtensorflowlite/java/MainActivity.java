@@ -130,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else{
                 result.setText("Not classifiable");
+                confidency.setText(null);
             }
             model.close();
         } catch (IOException e) {

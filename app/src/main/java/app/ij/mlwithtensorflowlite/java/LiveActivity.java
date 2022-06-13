@@ -171,6 +171,7 @@ public class LiveActivity extends AppCompatActivity implements ImageAnalysis.Ana
                     @Override
                     public void run() {
                         result.setText("Not classifiable");
+                        confidency.setText(null);
                     }
                 });
             }
