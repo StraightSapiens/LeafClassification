@@ -2,7 +2,6 @@ package app.ij.mlwithtensorflowlite.java;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.Camera;
 import androidx.camera.core.CameraSelector;
@@ -13,36 +12,20 @@ import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
-
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.ImageFormat;
-import android.graphics.Rect;
-import android.graphics.YuvImage;
-import android.media.Image;
-import android.media.ThumbnailUtils;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Size;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.google.common.util.concurrent.ListenableFuture;
-
 import org.tensorflow.lite.DataType;
-import org.tensorflow.lite.support.image.TensorImage;
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
-
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
-
 import app.ij.mlwithtensorflowlite.R;
 import app.ij.mlwithtensorflowlite.ml.Model;
 
@@ -54,7 +37,6 @@ public class LiveActivity extends AppCompatActivity implements ImageAnalysis.Ana
     PreviewView previewView;
     ImageAnalysis imageAnalyzer;
     Model model;
-    //ExecutorService cameraExecutor = Executors.newSingleThreadExecutor();
     ListenableFuture<ProcessCameraProvider> cameraProviderF;
     int imageSize = 224;
 
